@@ -9,13 +9,12 @@ import {
   ParseIntPipe,
   Post,
   Put,
-  UseGuards,
 } from '@nestjs/common';
 import { CategoriaService } from '../services/categoria.service';
 import { Categoria } from '../entities/categoria.entity';
-import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
-@UseGuards(JwtAuthGuard)
+@ApiTags('Categorias')
 @Controller('/categorias')
 export class categoriaController {
   constructor(private readonly categoriaService: CategoriaService) {}
