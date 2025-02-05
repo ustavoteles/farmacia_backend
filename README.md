@@ -65,7 +65,6 @@ classDiagram
 
     Produto --> Categoria : "pertence a"
     Categoria --> Produto : "tem muitos"
-    Usuario "1" --> "*" Produto : "pode ter"
 
 
 ```
