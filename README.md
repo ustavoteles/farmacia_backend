@@ -31,68 +31,42 @@ Este repositório contém um sistema para gerenciamento de medicamentos, desenvo
 
 ```mermaid
 classDiagram
-    class Medicamento {
+    class Produto {
         +int id
-        +String nome
-        +String descricao
-        +double preco
-        +int quantidadeEmEstoque
-        +fornecedor: Fornecedor
+        +string nome
+        +float preco
+        +Date dataValidade
         +Categoria categoria
-        +getInformacoes()
-        +atualizarEstoque()
+        +createProduto()
+        +updateProduto()
+        +deleteProdutoByID()
+        +deleteByData()
     }
 
     class Categoria {
         +int id
-        +String nome
-        +String descricao
-        +List~Medicamento~ medicamentos
-        +adicionarMedicamento(Medicamento medicamento)
-        +removerMedicamento(Medicamento medicamento)
-    }
-
-    class Fornecedor {
-        +int id
-        +String nome
-        +String contato
-        +String endereco
-        +List~Medicamento~ medicamentosFornecidos
-        +fornecerMedicamento(Medicamento medicamento)
+        +string nomeCategoria
+        +string descricao
+        +Produto[] produto
     }
 
     class Usuario {
         +int id
-        +String nome
-        +String email
-        +String senha
-        +String tipo
-        +realizarLogin()
-        +realizarLogout()
+        +string nome
+        +string usuario
+        +string senha
+        +string foto
+        +create()
+        +update()
+        +findById()
+        +findByUsuario()
+        +findAll()
     }
 
-    class Venda {
-        +int id
-        +Date data
-        +Usuario vendedor
-        +List~ItemVenda~ itens
-        +double calcularTotal()
-        +emitirRecibo()
-    }
+    Produto --> Categoria : "pertence a"
+    Categoria --> Produto : "tem muitos"
+    Usuario "1" --> "*" Produto : "pode ter"
 
-    class ItemVenda {
-        +int id
-        +Medicamento medicamento
-        +int quantidade
-        +double precoUnitario
-        +double calcularSubtotal()
-    }
-
-    Medicamento --> Categoria : pertence a
-    Medicamento --> Fornecedor : fornecido por
-    Venda --> Usuario : realizada por
-    Venda --> ItemVenda : contém
-    ItemVenda --> Medicamento : refere-se a
 
 ```
 
